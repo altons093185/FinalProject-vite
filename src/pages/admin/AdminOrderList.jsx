@@ -31,19 +31,19 @@ function OrderList() {
             cancelButtonColor: "#d33",
             confirmButtonText: "確認出貨",
             cancelButtonText: "取消"
-        }).then(async (result) => {
+        }).then(async (result) => {  // ✅ 這裡加 async
             if (result.isConfirmed) {
                 try {
-                    const res = await axios.post(`http://localhost:8081/api/orders/${orderId}/ship`, {}, {
-                        withCredentials: true
-                    });
+                    const res = await axios.post(
+                        `http://localhost:8081/api/orders/${orderId}/ship`,
+                        {},
+                        { withCredentials: true }
+                    );
 
-                    // 出貨成功後更新該筆訂單狀態
-                    setOrders(prev =>
-                        prev.map(order =>
-                            order.id === orderId
-                                ? { ...order, isShipped: true }
-                                : order
+                    // ✅ 更新 UI 狀態
+                    setOrders((prev) =>
+                        prev.map((order) =>
+                            order.id === orderId ? { ...order, isShipped: true } : order
                         )
                     );
 
@@ -53,12 +53,12 @@ function OrderList() {
                         icon: "success"
                     });
                 } catch (error) {
-                    console.error("出貨失敗:", err);
+                    console.error("出貨失敗:", error);
                     Swal.fire({
-                        icon: 'error',
-                        title: '出貨失敗',
-                        text: error.response.data.message,
-                        confirmButtonText: '重新嘗試'
+                        icon: "error",
+                        title: "出貨失敗",
+                        text: error.response?.data?.message || "發生未知錯誤",
+                        confirmButtonText: "重新嘗試"
                     });
                 }
             }

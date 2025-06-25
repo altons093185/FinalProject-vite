@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌿 全站預設樣式 */
+body {
+  @apply bg-bg text-primary font-sans;
+}
+
+/* 🔗 移除 Vite 預設藍色連結，改為繼承主色與 hover 效果 */
+a {
+  /* @apply text-inherit no-underline hover:text-white/80; */
+}
+
+a.text-main {
+  @apply hover:text-main-hover hover:underline;
+}
+
+/* 🔘 所有按鈕加入平滑 hover 動畫 */
+button {
+  @apply transition duration-200 ease-in-out;
+}
+
+/* 🖼️ 商品圖片不跑版 */
+img {
+  @apply block w-full object-cover;
+}
+
+/* 🧾 輸入框標準化樣式 */
+input[type="search"] {
+  @apply border border-gray-300 px-3 py-2 rounded text-sm text-primary;
+}
+
+input[type="search"]::placeholder {
+  @apply text-old;
+}

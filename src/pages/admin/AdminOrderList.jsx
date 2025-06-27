@@ -22,6 +22,7 @@ function OrderList() {
     }, []);
 
     const handleShip = async (orderId) => {
+        console.log("出貨訂單 ID:", orderId);
         Swal.fire({
             title: "確定要出貨嗎?",
             text: "將會執行自動下單程序",
@@ -31,11 +32,19 @@ function OrderList() {
             cancelButtonColor: "#d33",
             confirmButtonText: "確認出貨",
             cancelButtonText: "取消"
-        }).then(async (result) => {  // ✅ 這裡加 async
+        }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
+                    Swal.fire({
+                        title: "執行自動下單流程",
+                        text: "請稍候...",
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
                     const res = await axios.post(
-                        `http://localhost:8081/api/orders/${orderId}/ship`,
+                        `http://localhost:8081/api/orders/admin/ship/${orderId}`,
                         {},
                         { withCredentials: true }
                     );
@@ -52,6 +61,7 @@ function OrderList() {
                         text: "請檢查訂單狀況",
                         icon: "success"
                     });
+                    
                 } catch (error) {
                     console.error("出貨失敗:", error);
                     Swal.fire({

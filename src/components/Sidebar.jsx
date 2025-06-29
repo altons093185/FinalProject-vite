@@ -10,19 +10,19 @@ function Sidebar() {
     { nameZh: '新品推薦', nameEn: 'whats-new' },
     { nameZh: '線上獨家', nameEn: 'OnlineExclusive' },
     { nameZh: '速配商品', nameEn: 'QuickShip' },
-    { nameZh: '線上同價專區', nameEn: 'hero-sameprice' },
-    { nameZh: '食品飲料', nameEn: 'Food & Beverages' },
-    { nameZh: '3C 科技', nameEn: '3C Technology' },
-    { nameZh: '影音家電', nameEn: 'Audio & Video' },
-    { nameZh: '保健美容', nameEn: 'Health & Beauty' },
+    { nameZh: '線上同價專區', nameEn: 'Same-Price' },
+    { nameZh: '食品飲料', nameEn: 'Food-Dining' },
+    { nameZh: '3C 科技', nameEn: 'Digital-Mobile' },
+    { nameZh: '影音家電', nameEn: 'Televisions-Appliances' },
+    { nameZh: '保健美容', nameEn: 'Health-Beauty' },
     { nameZh: '日用母嬰', nameEn: 'Household-Baby-Toys' },
-    { nameZh: '服飾時尚', nameEn: 'Fashion' },
-    { nameZh: '家具餐廳', nameEn: 'Furniture & Dining' },
-    { nameZh: '珠寶黃金', nameEn: 'Jewelry & Gold' },
-    { nameZh: '運動戶外', nameEn: 'Sports & Outdoors' },
-    { nameZh: '辦公文具', nameEn: 'Office Supplies' },
-    { nameZh: '商業配送', nameEn: 'Business Delivery' },
-    { nameZh: '賣場獨家商品', nameEn: 'Marketplace Exclusives' }
+    { nameZh: '服飾時尚', nameEn: 'Clothing-Accessories' },
+    { nameZh: '家具餐廳', nameEn: 'Furniture-Kitchen' },
+    { nameZh: '珠寶黃金', nameEn: 'Jewelry-Gold' },
+    { nameZh: '運動戶外', nameEn: 'Sports-Lifestyle' },
+    { nameZh: '辦公文具', nameEn: 'Office-School' },
+    { nameZh: '商業配送', nameEn: 'Business-Delivery' },
+    { nameZh: '賣場獨家商品', nameEn: 'Warehouse-Only' }
   ];
 
   return (

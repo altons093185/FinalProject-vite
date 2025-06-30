@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { FiPlus, FiMinus, FiExternalLink } from "react-icons/fi";
+import Swal from 'sweetalert2';
 
 function ProductDetail() {
     const { productId } = useParams();
@@ -11,21 +12,29 @@ function ProductDetail() {
     const [priceHistory, setPriceHistory] = useState([]);
     const [quantity, setQuantity] = useState(1);
 
-
-    // useEffect(() => {
-    //   const fetchData = async () => {
-    //     try {
-    //       const productRes = await axios.get(`http://localhost:8081/api/products/${productId}`);
-    //     //   const historyRes = await axios.get(`http://localhost:8081/api/products/${productId}/history`);
-
-    //       setProduct(productRes.data);
-    //       setPriceHistory(historyRes.data);
-    //     } catch (err) {
-    //       console.error("載入產品資料錯誤:", err);
-    //     }
-    //   };
-    //   fetchData();
-    // }, [productId]);
+const handleAddToCart = async (productId, quantity) => {
+    try {
+      const res = await axios.post("http://localhost:8081/api/cart/add",
+        {
+          productId,
+          quantity
+        }
+        , { withCredentials: true });
+      Swal.fire({
+        title: '加入成功！',
+        text: '已將商品加入購物車。',
+        icon: 'success',
+        confirmButtonText: '確認'
+      });
+    } catch (error) {
+      console.error("加入失敗:", error);
+      Swal.fire({
+        icon: "error",
+        title: "加入失敗",
+        text: error.response?.data?.message || "請稍後再試"
+      });
+    }
+  };
 
 
     useEffect(() => {
@@ -112,7 +121,9 @@ function ProductDetail() {
                         </button>
                     </div>
                     <div className="flex flex-wrap gap-8">
-                        <button className="bg-[#7C9B75] text-white px-6 py-2 rounded hover:bg-[#6C8864]">
+                        <button 
+                        className="bg-[#7C9B75] text-white px-6 py-2 rounded hover:bg-[#6C8864]" 
+                        onClick={() => handleAddToCart(productId, quantity)}>
                             加入購物車
                         </button>
                         <a href={product.externalUrl} target="_blank" rel="noopener noreferrer"
